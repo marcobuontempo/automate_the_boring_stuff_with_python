@@ -1,7 +1,7 @@
 # Projects completed from [Automate The Boring Stuff With Python *- Al Sweigart*](https://automatetheboringstuff.com/)
 
 **Project Count:**
-11
+15
 
 **Project Types:**
 * *Python basics*
@@ -9,6 +9,7 @@
 * *Python data structures*
 * *Manipulating data*
 * *Regular Expressions*
+* *Reading and writing files*
 
 **Dependencies:**
 Refer to requirements.txt
