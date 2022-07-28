@@ -10,6 +10,7 @@
 * *Manipulating data*
 * *Regular Expressions*
 * *Reading and writing files*
+* *Organising files*
 
 **Dependencies:**
 Refer to requirements.txt
