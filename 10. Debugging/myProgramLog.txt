@@ -1,0 +1,3 @@
+ 2022-08-28 15:05:49,677 - INFO - The logging module is working.
+ 2022-08-28 15:05:52,652 - DEBUG - guess=heads, toss=tails
+ 2022-08-28 15:05:53,876 - DEBUG - guess=tails, toss=tails
