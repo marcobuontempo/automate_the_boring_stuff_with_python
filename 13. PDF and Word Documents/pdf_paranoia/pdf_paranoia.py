@@ -23,7 +23,7 @@ for foldername, subfolders, filenames in os.walk("."):
             path = os.path.join(foldername,filename)
             pdf_file_obj = open(filename, 'rb')
             try:
-                pdf_reader = PyPDF2.PdfFileReader(path)
+                pdf_reader = PyPDF2.PdfFileReader(pdf_file_obj)
                 if pdf_reader.isEncrypted == False:
                     pdf_writer = PyPDF2.PdfFileWriter()
                     # copy file to new pdf document
@@ -37,7 +37,7 @@ for foldername, subfolders, filenames in os.walk("."):
                     encrypted_file.close()
                     # verify file was encrypted
                     pdf_reader = PyPDF2.PdfFileReader(open(encrypted_path, "rb"))
-                    if pdf_reader.isEncrypted == True and pdf_reader.decrypt("password"):
+                    if pdf_reader.isEncrypted == True and pdf_reader.decrypt(password):
                         os.remove(path)
                         pass
                     else:
