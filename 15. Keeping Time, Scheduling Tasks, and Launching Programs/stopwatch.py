@@ -1,5 +1,5 @@
 #! python3
-# stopwatch.py - A simple stopwatch program
+# stopwatch.py - A simple stopwatch program.
 
 import time
 
