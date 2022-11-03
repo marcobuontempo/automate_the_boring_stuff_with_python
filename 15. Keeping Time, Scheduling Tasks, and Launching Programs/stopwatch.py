@@ -4,7 +4,7 @@
 import time
 
 # Display the program's instructions
-print("Press ENTER to begind. Afterwards, press ENTER to 'click' the stopwatch. Press Ctrl-C to quit.")
+print("Press ENTER to begin. Afterwards, press ENTER to 'click' the stopwatch. Press Ctrl-C to quit.")
 input() # Press Enter to begin
 print("Started.")
 start_time = time.time()    # Get the first lap's start time
