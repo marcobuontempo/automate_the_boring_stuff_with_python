@@ -1,7 +1,7 @@
 # Projects completed from [Automate The Boring Stuff With Python *- Al Sweigart*](https://automatetheboringstuff.com/)
 
 **Project Count:**
-42
+47
 
 **Project Types:**
 * *Python basics*
@@ -17,6 +17,7 @@
 * *Excel Spreadsheets with Python*
 * *PDF and Word documents*
 * *CSV and JSON files*
+* *Sending Email and Text Messages*
 
 **Dependencies:**
 Refer to [requirements.txt](requirements.txt)
