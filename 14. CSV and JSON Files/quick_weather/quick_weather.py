@@ -1,5 +1,5 @@
 #! python3
-#! quick_weather.py - Prints the weather for a lcoation from the command line
+#! quick_weather.py - Prints the weather for a location from the command line
 
 import json, requests, sys
 
