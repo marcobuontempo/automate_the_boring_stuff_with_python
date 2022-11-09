@@ -13,9 +13,11 @@ lxml==4.9.1
 openpyxl==3.0.10
 outcome==1.2.0
 Pillow==9.3.0
+PyJWT==2.6.0
 PyPDF2==2.11.1
 pyperclip==1.8.2
 PySocks==1.7.1
+pytz==2022.6
 pyzmail36==1.0.5
 requests==2.28.1
 selenium==4.5.0
@@ -26,5 +28,6 @@ sortedcontainers==2.4.0
 soupsieve==2.3.2.post1
 trio==0.22.0
 trio-websocket==0.9.2
+twilio==7.15.1
 urllib3==1.26.12
 wsproto==1.2.0
