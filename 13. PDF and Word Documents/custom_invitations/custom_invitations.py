@@ -7,7 +7,7 @@ import docx
 # populate list of guest names
 guest_names = []
 try:
-    guest_file = open('guests.txt')
+    guest_file = open("guests.txt")
     guest_names = guest_file.readlines()
 except:
     # exit if error loading names
