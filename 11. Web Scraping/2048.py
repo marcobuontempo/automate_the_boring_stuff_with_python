@@ -1,6 +1,6 @@
 #! python3
 # 2048.py - Plays the game 2048 by automatically inputting a constant sequence of up/right/down/left keystrokes
-#         - It will retry until the game has been won 
+#         - It will retry until the game has been won
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -15,12 +15,13 @@ browser.get("https://play2048.co/")
 html_elem = browser.find_element(By.TAG_NAME, "html")
 
 # Algorithm to loop up/right/down/left keystrokes
-while(True):
-    game_message = browser.find_element(By.CSS_SELECTOR, ".game-message p").text
-    if(game_message == "Game over!"):
+while (True):
+    game_message = browser.find_element(
+        By.CSS_SELECTOR, ".game-message p").text
+    if (game_message == "Game over!"):
         # Retry if didn't win
         browser.find_element(By.CSS_SELECTOR, ".retry-button").click()
-    elif(game_message == "You win!"):
+    elif (game_message == "You win!"):
         # End if game has been completed
         break
     html_elem.send_keys(Keys.UP)

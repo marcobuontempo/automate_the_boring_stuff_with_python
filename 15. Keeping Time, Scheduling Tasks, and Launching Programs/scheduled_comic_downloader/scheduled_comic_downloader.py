@@ -4,7 +4,13 @@
 # When running the program, it will fetch and download new comics one time.
 # If the program is left to run, it will continue to periodically fetch and download at 12pm every day.
 
-import requests, bs4, json, os, threading, time, datetime
+import requests
+import bs4
+import json
+import os
+import threading
+import time
+import datetime
 
 # Load existing JSON data for info about last fetched comics
 json_read_file = open("./comic_info.json")
@@ -12,13 +18,18 @@ comic_info = json.load(json_read_file)
 json_read_file.close()
 
 # Get datetime objects for last, current and next
-last_fetch = datetime.datetime.strptime(comic_info["last_fetch"], "%Y-%m-%d %H:%M:%S")
+last_fetch = datetime.datetime.strptime(
+    comic_info["last_fetch"], "%Y-%m-%d %H:%M:%S")
 current_datetime = datetime.datetime.now()
-next_fetch = (last_fetch + datetime.timedelta(days=1)).replace(hour=12,minute=0,second=0)
+next_fetch = (last_fetch + datetime.timedelta(days=1)
+              ).replace(hour=12, minute=0, second=0)
 
-os.makedirs("downloaded_comics", exist_ok=True)  # store comics in ./downloaded_comics
+# store comics in ./downloaded_comics
+os.makedirs("downloaded_comics", exist_ok=True)
 
 # Downloads any new xkcd comics
+
+
 def get_xkcd():
     # Get the last saved URL
     prev_comic_url = comic_info["prev_xkcd"]
@@ -34,7 +45,7 @@ def get_xkcd():
     if url.endswith("#"):
         print(" - Latest xkcd comic already fetched.")
         return
-    
+
     while not url.endswith("#"):
         # Download the web page
         res = requests.get(url)
@@ -53,18 +64,18 @@ def get_xkcd():
             res = requests.get(comic_url)
             res.raise_for_status()
             # Save the image to ./downloaded_comics
-            imageFile = open(os.path.join("downloaded_comics",os.path.basename(comic_url)), "wb")
+            imageFile = open(os.path.join("downloaded_comics",
+                             os.path.basename(comic_url)), "wb")
             for chunk in res.iter_content(100000):
                 imageFile.write(chunk)
             imageFile.close()
-        
+
         # Update JSON info
         comic_info["prev_xkcd"] = url
         # Update URL to next image
         next_link = soup.select("a[rel='next']")[0]
         url = "https://xkcd.com" + next_link.get("href")
 
-        
 
 # Downloads any new XKCD comics
 def get_left_handed_toons():
@@ -81,7 +92,7 @@ def get_left_handed_toons():
     if len(next_link) == 0:
         print(" - Latest Left-Handed Toons comic already fetched.")
         return
-    
+
     while len(next_link) != 0:
         # Download the web page
         url = "http://www.lefthandedtoons.com" + next_link[0].get("href")
@@ -101,16 +112,16 @@ def get_left_handed_toons():
             res = requests.get(comic_url)
             res.raise_for_status()
             # Save the image to ./downloaded_comics
-            imageFile = open(os.path.join("downloaded_comics",os.path.basename(comic_url)), "wb")
+            imageFile = open(os.path.join("downloaded_comics",
+                             os.path.basename(comic_url)), "wb")
             for chunk in res.iter_content(100000):
                 imageFile.write(chunk)
             imageFile.close()
-        
+
         # Update JSON info
         comic_info["prev_left_handed_toons"] = url
         # Update href to next image
         next_link = soup.select("li.next a")
-
 
 
 def get_all():
@@ -133,10 +144,10 @@ def get_all():
 
     # Save updated JSON info
     with open("./comic_info.json", "w") as json_write_file:
-        comic_info["last_fetch"] = current_datetime.strftime("%Y-%m-%d %H:%M:%S")   # Update the last_fetch to current datetime
+        comic_info["last_fetch"] = current_datetime.strftime(
+            "%Y-%m-%d %H:%M:%S")   # Update the last_fetch to current datetime
         json_obj = json.dumps(comic_info)
         json_write_file.write(json_obj)
-
 
 
 # Fetch and download once
@@ -149,7 +160,9 @@ while True:
     current_datetime = datetime.datetime.now()  # Update current datetime
     if current_datetime >= next_fetch:
         get_all()
-        next_fetch = (current_datetime + datetime.timedelta(days=1)).replace(hour=12,minute=0,second=0) # Set next fetch to 12pm next day
-        print("Waiting for next fetch call at %s...\n" % next_fetch.strftime("%Y-%m-%d %H:%M:%S"))
+        next_fetch = (current_datetime + datetime.timedelta(days=1)).replace(
+            hour=12, minute=0, second=0)  # Set next fetch to 12pm next day
+        print("Waiting for next fetch call at %s...\n" %
+              next_fetch.strftime("%Y-%m-%d %H:%M:%S"))
     else:
         time.sleep(1)   # Wait if no fetch is required

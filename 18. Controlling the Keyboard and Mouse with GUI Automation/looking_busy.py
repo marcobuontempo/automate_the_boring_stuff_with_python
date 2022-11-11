@@ -1,7 +1,8 @@
 #! python3
 # looking_busy.py - Moves the cursor every 10 seconds, to prevent applications from entering idle mode
 
-import pyautogui, time
+import pyautogui
+import time
 
 DELAY = 10  # Number of seconds to wait (i.e. 10 seconds)
 

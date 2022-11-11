@@ -1,7 +1,9 @@
 #! python3
 # map_it.py - Launches a map in he browser using an address from the command line or clipboard
 
-import webbrowser, sys, pyperclip
+import webbrowser
+import sys
+import pyperclip
 
 if len(sys.argv) > 1:
     # Get address from command line
@@ -11,4 +13,3 @@ else:
     address = pyperclip.paste()
 
 webbrowser.open("https://www.google.com/maps/place/" + address)
-

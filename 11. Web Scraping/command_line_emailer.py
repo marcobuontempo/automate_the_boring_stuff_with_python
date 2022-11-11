@@ -36,20 +36,24 @@ noBtnElem.click()
 
 # Create New Message
 sleep(2)
-newMsgElem = browser.find_element(By.CSS_SELECTOR, "[data-icon-name='ComposeRegular']")
+newMsgElem = browser.find_element(
+    By.CSS_SELECTOR, "[data-icon-name='ComposeRegular']")
 newMsgElem.click()
 # Email Field
 sleep(2)
 toFieldElem = browser.find_element(By.CSS_SELECTOR, "div[aria-label='To']")
 toFieldElem.send_keys(emailToInput, Keys.ENTER)
 # Subject Field
-subjectElem = browser.find_element(By.CSS_SELECTOR, "input[aria-label='Add a subject']")
+subjectElem = browser.find_element(
+    By.CSS_SELECTOR, "input[aria-label='Add a subject']")
 subjectElem.send_keys(subjectInput)
 # Text Field
 sleep(2)
-msgBodyElem = browser.find_element(By.CSS_SELECTOR, "div[aria-label='Message body, press Alt+F10 to exit']")
+msgBodyElem = browser.find_element(
+    By.CSS_SELECTOR, "div[aria-label='Message body, press Alt+F10 to exit']")
 msgBodyElem.send_keys(msgBodyInput)
 # Send Email
 sleep(2)
-sendBtnElem = browser.find_element(By.CSS_SELECTOR, "button[aria-label='Send']")
+sendBtnElem = browser.find_element(
+    By.CSS_SELECTOR, "button[aria-label='Send']")
 sendBtnElem.click()

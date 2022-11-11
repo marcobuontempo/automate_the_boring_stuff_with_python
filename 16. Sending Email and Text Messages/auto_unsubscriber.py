@@ -1,7 +1,11 @@
 #! python3
 # auto_unsubscriber.py - scans email account for 'Unsubscribe' links, and automatically opens them in browser
 
-import imaplib, imapclient, pyzmail, webbrowser, bs4
+import imaplib
+import imapclient
+import pyzmail
+import webbrowser
+import bs4
 
 imaplib._MAXLINE = 10000000
 

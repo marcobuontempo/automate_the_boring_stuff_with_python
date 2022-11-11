@@ -1,12 +1,14 @@
-#! /usr/bin/env python3
+#! python3
 # backup_to_zip.py - copies an entire folder and its contents into
 # a ZIP file whose filename increments
 
-import zipfile, os
+import zipfile
+import os
+
 
 def backup_to_zip(folder):
     # Backup the entire contents of "folder" into a ZIP file
-    
+
     folder = os.path.abspath(folder)    # make sure folder is absolute
 
     # Figure out the filename this code should use based on what files already exist

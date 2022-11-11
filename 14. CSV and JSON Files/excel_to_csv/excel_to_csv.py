@@ -7,12 +7,15 @@
 # create 1 csv per sheet
 # filename should be <excel filename>_<sheet title>.csv
 
-import os, openpyxl, csv
+import os
+import openpyxl
+import csv
 
 for excel_file in os.listdir("."):
     # Skip non-xlsx files, load the workbook object
-    if not excel_file.endswith(".xlsx"): continue
-    
+    if not excel_file.endswith(".xlsx"):
+        continue
+
     wb = openpyxl.load_workbook(excel_file)
     # Loop through every sheet in workbook
     for sheet_name in wb.get_sheet_names():

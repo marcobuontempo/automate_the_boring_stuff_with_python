@@ -1,7 +1,8 @@
 #! python3
 # remove_csv_header.py - Removes the header from all CSV files in the current working directory
 
-import csv, os
+import csv
+import os
 
 os.makedirs('header_removed', exist_ok=True)
 
@@ -23,7 +24,8 @@ for csv_filename in os.listdir("."):
     csv_file_obj.close()
 
     # Write out the CSV file
-    csv_file_obj = open(os.path.join("header_removed", csv_filename), "w", newline="")
+    csv_file_obj = open(os.path.join(
+        "header_removed", csv_filename), "w", newline="")
     csv_writer = csv.writer(csv_file_obj)
     for row in csv_rows:
         csv_writer.writerow(row)

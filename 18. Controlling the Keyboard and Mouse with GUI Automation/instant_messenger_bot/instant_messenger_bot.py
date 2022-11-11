@@ -1,5 +1,5 @@
 #! python3
-# instant_messenger_bot.py - Automatically sends a direct message on Discord web-browser. 
+# instant_messenger_bot.py - Automatically sends a direct message on Discord web-browser.
 
 # Works as of 10/11/22 on Macbook Pro using Retina display (this display affects some methods, such as .locateOnScreen())
 
@@ -7,7 +7,9 @@
 # Note: Separate discord handles using commas
 # Example: python3 instant_messenger_bot.py Bob123, Katy567
 
-import pyautogui, time, sys
+import pyautogui
+import time
+import sys
 
 # Verify correct usage
 if len(sys.argv) < 2:
@@ -25,13 +27,15 @@ try:
     time.sleep(5)
     for friend_name in friend_names:
         # Locate and click button to start conversation
-        start_button = pyautogui.locateCenterOnScreen("start_conversation_button.png")
+        start_button = pyautogui.locateCenterOnScreen(
+            "start_conversation_button.png")
         # Exit application if button is not located
         if start_button == None:
             print("Warning: cannot find button to start message!")
-            break  
+            break
         start_button = list(start_button)
-        pyautogui.moveTo(start_button[0]/2,start_button[1]/2)   # x & y coordinates to click. /2 due to Macbook Retina display
+        # x & y coordinates to click. /2 due to Macbook Retina display
+        pyautogui.moveTo(start_button[0]/2, start_button[1]/2)
         pyautogui.click()
         time.sleep(5)
 
@@ -44,7 +48,6 @@ try:
         pyautogui.typewrite(MESSAGE)
         pyautogui.press("enter")
         time.sleep(5)
-
 
     print("All messages sent! :)")
 

@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#! python3
 # table_printer.py - prints a list-of-lists (with equal sized inner lists) to the terminal, with each column vertically aligned and justified-right
 
 def print_table(table_data):
@@ -11,14 +11,13 @@ def print_table(table_data):
             string = table_data[i][j]
             if len(string) > col_widths[i]:
                 col_widths[i] = len(string)
-    
+
     for j in range(n_col):
         row_output = ""
         for i in range(n_row):
             word = table_data[i][j]
             row_output += word.rjust(col_widths[i]) + " "
         print(row_output)
-
 
 
 input_data = [["apples", "oranges", "cherries", "banana"],

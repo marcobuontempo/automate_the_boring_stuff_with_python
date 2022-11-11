@@ -24,7 +24,7 @@ for foldername, subfolders, filenames in os.walk("/"):
         width, height = image.size
 
         # Check if width & height are larger than 500
-        if width>=500 and height>=500:
+        if width >= 500 and height >= 500:
             # Image is large enough to be considered a photo
             num_photo_files += 1
         else:
@@ -34,5 +34,3 @@ for foldername, subfolders, filenames in os.walk("/"):
     # If more than half of files were photos, print the absolute path of the folder
     if num_photo_files >= num_non_photo_files:
         print(os.path.abspath(foldername))
-
-        

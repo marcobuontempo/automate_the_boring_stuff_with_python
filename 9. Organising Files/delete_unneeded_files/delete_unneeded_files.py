@@ -1,9 +1,11 @@
-#! /usr/bin/env python3
+#! python3
 # delete_unneeded_files.py - Lists all files that are over 100MB in size
 # Usage: python3 delete_unneeded_files.py [path_to_folder_to_search]
 
 
-import sys, os, send2trash
+import sys
+import os
+import send2trash
 
 if len(sys.argv) < 2:
     print("Usage: python3 delete_unneeded_files.py [path_to_folder_to_search]")
@@ -19,10 +21,11 @@ large_files = {}
 # traverse folder and store all paths to files that are above 100MB
 for foldername, subfolders, filenames in os.walk(folder):
     for filename in filenames:
-        path = os.path.join(foldername,filename)
+        path = os.path.join(foldername, filename)
         size = round(os.path.getsize(path)/1000000, 2)
         if size > 100:
-            large_files[str(file_index)] = {"path": path, "size": str(size)+"MB"}
+            large_files[str(file_index)] = {
+                "path": path, "size": str(size)+"MB"}
             file_index += 1
 
 # print all files over 100MB to terminal
@@ -31,7 +34,8 @@ if len(large_files) == 0:
     sys.exit()
 print("\n   FILES FOUND >100MB:")
 for key in large_files:
-    print(f"     [{key}] -", os.path.basename(large_files[key]["path"]), "-", large_files[key]["size"])
+    print(f"     [{key}] -", os.path.basename(large_files[key]
+          ["path"]), "-", large_files[key]["size"])
 print("\n")
 
 # request deletion of a file in list
@@ -43,7 +47,8 @@ else:
     if delete_obj is not None:
         # confirm deletion and send to trash
         filename_to_delete = os.path.basename(delete_obj["path"])
-        confirm_deletion = input(f"Are you sure you want to delete {filename_to_delete}? (Y/N)\n")
+        confirm_deletion = input(
+            f"Are you sure you want to delete {filename_to_delete}? (Y/N)\n")
         if confirm_deletion.upper() == "Y":
             print(f"Sending {filename_to_delete} to trash...")
             send2trash.send2trash(delete_obj["path"])

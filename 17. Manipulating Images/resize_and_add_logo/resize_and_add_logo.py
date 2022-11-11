@@ -9,7 +9,8 @@ LOGO_FILENAME = "catlogo.png"
 
 # Load Logo Image
 logo_image = Image.open(LOGO_FILENAME)
-logo_image = logo_image.resize((80, int((logo_image.size[0]/logo_image.size[1]) * 80))) # Resize logo to 80px width
+logo_image = logo_image.resize((80, int(
+    (logo_image.size[0]/logo_image.size[1]) * 80)))  # Resize logo to 80px width
 logo_width, logo_height = logo_image.size
 
 os.makedirs("with_logo", exist_ok=True)
@@ -37,7 +38,8 @@ for filename in os.listdir("."):
 
     # Add the logo
     print("Adding logo to %s..." % filename)
-    image.paste(logo_image, (width - logo_width, height - logo_height), logo_image)
+    image.paste(logo_image, (width - logo_width,
+                height - logo_height), logo_image)
 
     # Save the changes
     image.save(os.path.join("with_logo", filename))

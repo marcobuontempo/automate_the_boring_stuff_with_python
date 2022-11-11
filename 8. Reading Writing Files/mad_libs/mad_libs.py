@@ -1,8 +1,10 @@
-#! /usr/bin/env python3
+#! python3
 # mad_libs.py - reads text files and prompts users to replace all occurrences of ADJECTIVE, NOUN, ADVERB, & VERB
 # Prints results and saves output to new text file
 
-import sys, os, re
+import sys
+import os
+import re
 
 if len(sys.argv) < 2:
     print("Usage: python mad_libs.py <./path_to_file.txt>")
@@ -20,7 +22,7 @@ matches = madlib_regex.findall(input_text)
 
 for match in matches:
     prompt = "Enter a"
-    if match.upper()=="ADJECTIVE":
+    if match.upper() == "ADJECTIVE":
         prompt += "n"
     prompt += " " + match.lower() + ":\n"
     new_word = input(prompt)

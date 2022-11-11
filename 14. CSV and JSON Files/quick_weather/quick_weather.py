@@ -1,7 +1,9 @@
 #! python3
 #! quick_weather.py - Prints the weather for a location from the command line
 
-import json, requests, sys
+import json
+import requests
+import sys
 
 # Compute location from command line arguments
 if len(sys.argv) < 2:
@@ -11,7 +13,8 @@ API_KEY = sys.argv[1]
 location = " ".join(sys.argv[2:])
 
 # Download the JSON data from the OpenWeatherMap.org's API
-url = "http://api.openweathermap.org/data/2.5/forecast/daily?q=%s&cnt=3&appid=%s" % (location, API_KEY)
+url = "http://api.openweathermap.org/data/2.5/forecast/daily?q=%s&cnt=3&appid=%s" % (
+    location, API_KEY)
 response = requests.get(url)
 response.raise_for_status
 

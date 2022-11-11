@@ -1,8 +1,10 @@
-#! /usr/bin/env python3
-# rename_dates.py - renames all files in the current directory 
+#! python3
+# rename_dates.py - renames all files in the current directory
 # from American dates (MM-DD-YYYY) to European dates (DD-MM-YYYY)
 
-import os, shutil, re
+import os
+import shutil
+import re
 
 # regex to match American date format
 date_regex = re.compile(r"""^(.*?)          # all text before the date
@@ -29,7 +31,8 @@ for filename in os.listdir("."):
     after_part = match.group(8)
 
     # create European-formatted date
-    new_filename = before_part + day_part + "-" + month_part + "-" + year_part + after_part
+    new_filename = before_part + day_part + "-" + \
+        month_part + "-" + year_part + after_part
 
     # get the full, absolute file paths
     abs_working_dir = os.path.abspath(".")
@@ -37,5 +40,5 @@ for filename in os.listdir("."):
     new_filename = os.path.join(abs_working_dir, new_filename)
 
     # rename the files
-    # print("\nRenaming '%s' to '%s'..." % (filename, new_filename))
+    print("\nRenaming '%s' to '%s'..." % (filename, new_filename))
     shutil.move(filename, new_filename)

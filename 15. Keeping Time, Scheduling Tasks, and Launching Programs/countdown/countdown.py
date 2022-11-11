@@ -1,7 +1,8 @@
 #! python3
 # countdown.py - A simple countdown script.
 
-import time, subprocess
+import time
+import subprocess
 
 time_left = 60
 

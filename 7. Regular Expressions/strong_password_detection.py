@@ -1,7 +1,8 @@
-#! /usr/bin/env python3
+#! python3
 # strong_password_detection.py - Detects whether a password is strong (8+ characters, contains 1+ uppercase, 1+ lowercase, and 1+ digit)
 
-import re, sys
+import re
+import sys
 
 if len(sys.argv) < 2:
     print("\nUsage: python strong_password_detection.py <password> - determines password strength\n")
@@ -17,6 +18,8 @@ pwd_digit = re.compile(r"[0-9]+")   # 1+ digit
 pwd = sys.argv[1]
 
 # validate whether all regex are matched
+
+
 def password_strength(password):
     if pwd_len.search(password) == None:
         return False
@@ -27,6 +30,7 @@ def password_strength(password):
     if pwd_digit.search(password) == None:
         return False
     return True
+
 
 # output to user whether password is strong
 if password_strength(pwd):

@@ -1,7 +1,9 @@
 #! python3
 # send_dues_reminder.py - Sends emails based on payment status in spreadsheet.
 
-import openpyxl, smtplib, sys
+import openpyxl
+import smtplib
+import sys
 
 # Get credentials for email from command line.
 email_address = sys.argv[1]
@@ -31,11 +33,13 @@ smtp_obj.login(email_address, email_password)
 
 # Send out reminder emails.
 for name, email in unpaid_members.items():
-    body = "Subject: %s dues unpaid.\nDear %s,\nRecords show that you have not paid dues for %s. Please make this payment as soon as possible. Thank you!" % (latest_month,name,latest_month)
+    body = "Subject: %s dues unpaid.\nDear %s,\nRecords show that you have not paid dues for %s. Please make this payment as soon as possible. Thank you!" % (
+        latest_month, name, latest_month)
     print("Sending email to %s..." % email)
     send_email_status = smtp_obj.sendmail(email_address, email, body)
 
     if send_email_status != {}:
-        print("There was a problem sending email to %s: %s" % (email, send_email_status))
+        print("There was a problem sending email to %s: %s" %
+              (email, send_email_status))
 
 smtp_obj.quit()

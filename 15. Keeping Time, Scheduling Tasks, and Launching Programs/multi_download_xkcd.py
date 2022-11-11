@@ -1,12 +1,16 @@
 #! python3
 # multi_download_xkcd.py - Downloads every single XKCD comic
 
-import requests, os, bs4, threading
+import requests
+import os
+import bs4
+import threading
 
 os.makedirs("xkcd", exist_ok=True)  # store comics in ./xkcd
 
+
 def download_xkcd(start_comic, end_comic):
-    for url_number in range(start_comic,end_comic):
+    for url_number in range(start_comic, end_comic):
         # Doanload the page.
         print("Downloading page http://xkcd.com/%s..." % (url_number))
         res = requests.get("http://xkcd.com/%s" % (url_number))
@@ -27,10 +31,12 @@ def download_xkcd(start_comic, end_comic):
             res.raise_for_status()
 
             # Save image to ./xkcd
-            image_file = open(os.path.join("xkcd", os.path.basename(comic_url)), "wb")
+            image_file = open(os.path.join(
+                "xkcd", os.path.basename(comic_url)), "wb")
             for chunk in res.iter_content(100000):
                 image_file.write(chunk)
             image_file.close()
+
 
 # Create and start the Thread objects.
 download_threads = []   # a list of all the Thread objects

@@ -1,7 +1,8 @@
 #! python3
 # read_census_excel.py - Tabulates population and number of census tracts for each country
 
-import openpyxl, pprint
+import openpyxl
+import pprint
 print("Opening workbook...")
 wb = openpyxl.load_workbook("censuspopdata.xlsx")
 sheet = wb["Population by Census Tract"]

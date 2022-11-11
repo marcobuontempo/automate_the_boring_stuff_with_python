@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#! python3
 # multiclipboard.py - saves and loads pieces of text to the clipboard
 # Usage: py.exe multiclipboard.pyw save <keyword> - saves clipboard to keyword
 #        py.exe multiclipboard.pyw <keyword> - loads keyword to clipboard
@@ -6,13 +6,16 @@
 #        py.exe multiclipboard.pyw delete all - deletes all contents saved in multiclipboard
 #        py.exe multiclipboard.pyw - loads all keywords to clipboard
 
-import shelve, pyperclip, sys
+import shelve
+import pyperclip
+import sys
 
 mcb_shelf = shelve.open("mcb")
 
 if len(sys.argv) == 3:
     if sys.argv[1].lower() == "save":
-        mcb_shelf[sys.argv[2]] = pyperclip.paste()  # save clipboard content to keyword
+        # save clipboard content to keyword
+        mcb_shelf[sys.argv[2]] = pyperclip.paste()
     elif sys.argv[1].lower() == "delete":
         if sys.argv[2].lower() in mcb_shelf:    # delete keyword
             del mcb_shelf[sys.argv[2]]

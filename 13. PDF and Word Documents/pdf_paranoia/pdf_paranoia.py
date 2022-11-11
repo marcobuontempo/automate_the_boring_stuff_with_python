@@ -2,10 +2,12 @@
 # pdf_paranoia.py - Goes through every PDF in a folder and encrypts them using a password provided on the command line. Deletes the original unencrypted files.
 # Usage: python3 pdf_paranoia.py [password_for_encrpytion]
 
-import os, sys, PyPDF2
+import os
+import sys
+import PyPDF2
 
 # verify correct usage
-if len(sys.argv)!=2:
+if len(sys.argv) != 2:
     print("Usage: python3 pdf_paranoia.py [password_for_encrpytion]")
     sys.exit()
 
@@ -20,7 +22,7 @@ for foldername, subfolders, filenames in os.walk("."):
     for filename in filenames:
         if filename.endswith('.pdf'):
             # open file
-            path = os.path.join(foldername,filename)
+            path = os.path.join(foldername, filename)
             pdf_file_obj = open(filename, 'rb')
             try:
                 pdf_reader = PyPDF2.PdfFileReader(pdf_file_obj)
@@ -31,12 +33,14 @@ for foldername, subfolders, filenames in os.walk("."):
                         pdf_writer.addPage(pdf_reader.getPage(page_num))
                     # encrypt new pdf document
                     pdf_writer.encrypt(password)
-                    encrypted_path = path.replace(".pdf","_encrypted.pdf") # update the new file with "_encrypted.pdf" extension
+                    # update the new file with "_encrypted.pdf" extension
+                    encrypted_path = path.replace(".pdf", "_encrypted.pdf")
                     encrypted_file = open(encrypted_path, "wb")
                     pdf_writer.write(encrypted_file)
                     encrypted_file.close()
                     # verify file was encrypted
-                    pdf_reader = PyPDF2.PdfFileReader(open(encrypted_path, "rb"))
+                    pdf_reader = PyPDF2.PdfFileReader(
+                        open(encrypted_path, "rb"))
                     if pdf_reader.isEncrypted == True and pdf_reader.decrypt(password):
                         os.remove(path)
                         pass
@@ -51,7 +55,7 @@ for foldername, subfolders, filenames in os.walk("."):
 if len(files_failed) > 0:
     print("Failed encryption operation for the following files:")
     for filename in files_failed:
-        print("-",filename)
+        print("-", filename)
     print("All other files have been successfully encrypted.")
 else:
     print("Encryption and deletion process has been successfully completed.")

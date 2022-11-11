@@ -1,7 +1,9 @@
 #! python3
 # download_xkcd.py - Downloads every single XKCD comic
 
-import requests, os, bs4
+import requests
+import os
+import bs4
 
 url = "https://xkcd.com"    # starting url
 os.makedirs("xkcd", exist_ok=True)  # store comics in ./xkcd
@@ -25,7 +27,8 @@ while not url.endswith("#"):
         res = requests.get(comicUrl)
         res.raise_for_status()
         # Save the image to ./xkcd
-        imageFile = open(os.path.join("xkcd", os.path.basename(comicUrl)), "wb")
+        imageFile = open(os.path.join(
+            "xkcd", os.path.basename(comicUrl)), "wb")
         for chunk in res.iter_content(100000):
             imageFile.write(chunk)
         imageFile.close()

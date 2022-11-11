@@ -1,19 +1,23 @@
 #! python3
 # form_filler.py - Automatically fills in the form.
 
-import pyautogui, time
+import pyautogui
+import time
 
 # Set these to the correct coordinates for your computer
 name_field = (648, 319)
 submit_button = (651, 817)
-submit_button_colour = (75,141,249)
+submit_button_colour = (75, 141, 249)
 submit_another_link = (760, 224)
 
 # Hard-coded data (for purpose of this application)
-form_data = [{"name": "Alice", "fear": "eavesdroppers", "source": "wand", "robocop": 4, "comments": "Tell Bob I said hi."}, 
-             {"name": "Bob", "fear": "bees", "source": "amulet", "robocop": 4, "comments": "n/a"},
-             {"name": "Carol", "fear": "puppets", "source": "crystal ball", "robocop": 1, "comments": "Please take the puppets out of the break room."},
-             {"name": "Alex Murphy", "fear": "ED-209", "source": "money", "robocop": 5, "comments": "Protect the innocent. Serve the public trust. Uphold the law."}
+form_data = [{"name": "Alice", "fear": "eavesdroppers", "source": "wand", "robocop": 4, "comments": "Tell Bob I said hi."},
+             {"name": "Bob", "fear": "bees", "source": "amulet",
+                 "robocop": 4, "comments": "n/a"},
+             {"name": "Carol", "fear": "puppets", "source": "crystal ball", "robocop": 1,
+                 "comments": "Please take the puppets out of the break room."},
+             {"name": "Alex Murphy", "fear": "ED-209", "source": "money", "robocop": 5,
+                 "comments": "Protect the innocent. Serve the public trust. Uphold the law."}
              ]
 
 for person in form_data:
@@ -24,7 +28,7 @@ for person in form_data:
     # Wait until form page has loaded
     while not pyautogui.pixelMatchesColor(submit_button[0], submit_button[1], submit_button_colour):
         time.sleep(0.5)
-    
+
     print("Entering %s info..." % person["name"])
     pyautogui.click(name_field[0], name_field[1])
 
@@ -43,7 +47,7 @@ for person in form_data:
         pyautogui.typewrite(["down", "down", "down", "\t"])
     elif person["source"] == "money":
         pyautogui.typewrite(["down", "down", "down", "down", "\t"])
-    
+
     # Fill out the RoboCop field.
     if person["robocop"] == 1:
         pyautogui.typewrite([" ", "\t"])
