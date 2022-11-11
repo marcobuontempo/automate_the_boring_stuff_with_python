@@ -1,6 +1,8 @@
 #! python3
 # instant_messenger_bot.py - Automatically sends a direct message on Discord web-browser. 
+
 # Works as of 10/11/22 on Macbook Pro using Retina display (this display affects some methods, such as .locateOnScreen())
+
 # Usage: python3 instant_messenger_bot.py <discord_handles>
 # Note: Separate discord handles using commas
 # Example: python3 instant_messenger_bot.py Bob123, Katy567
