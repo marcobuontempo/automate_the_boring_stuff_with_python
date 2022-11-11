@@ -21,15 +21,15 @@ if images == []:
     print("None")
 else:
     for i in range(min(num_files, len(images))):
-        imgAlt = "_".join(images[i].get("alt").split(" ")) if images[i].get(
+        img_alt = "_".join(images[i].get("alt").split(" ")) if images[i].get(
             "alt") != None else "unnamed_picture"
-        imgName = imgAlt + "_" + str(i + 1) + ".png"
+        img_name = img_alt + "_" + str(i + 1) + ".png"
         # Download Image
-        imageRes = requests.get(images[i].get("src"))
-        imageRes.raise_for_status()
-        print(f"    - Downloading image {imgName}...")
+        image_res = requests.get(images[i].get("src"))
+        image_res.raise_for_status()
+        print(f"    - Downloading image {img_name}...")
         # Save Image
-        imageFile = open(os.path.join("unsplash", category, imgName), "wb")
-        for chunk in imageRes.iter_content(100000):
-            imageFile.write(chunk)
-        imageFile.close()
+        image_file = open(os.path.join("unsplash", category, img_name), "wb")
+        for chunk in image_res.iter_content(100000):
+            image_file.write(chunk)
+        image_file.close()

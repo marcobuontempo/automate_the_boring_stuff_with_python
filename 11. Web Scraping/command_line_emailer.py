@@ -13,47 +13,47 @@ browser = webdriver.Chrome()
 browser.get("https://outlook.office365.com/mail/inbox")
 
 # Get Email Info from User
-emailFromInput = input("Enter your email address:\n")
-passwordInput = getpass.getpass("Enter password:\n")
-emailToInput = input("Recipient's email address:\n")
-subjectInput = input("Enter email's subject:\n")
-msgBodyInput = input("Enter the body text of the email to send:\n")
+email_from_input = input("Enter your email address:\n")
+password_input = getpass.getpass("Enter password:\n")
+email_to_input = input("Recipient's email address:\n")
+subject_input = input("Enter email's subject:\n")
+msg_body_input = input("Enter the body text of the email to send:\n")
 
 # Login - Email Address
 sleep(2)
-emailElem = browser.find_element(By.CSS_SELECTOR, "input[type='email']")
-emailElem.send_keys(emailFromInput)
-emailElem.send_keys(Keys.ENTER)
+email_elem = browser.find_element(By.CSS_SELECTOR, "input[type='email']")
+email_elem.send_keys(email_from_input)
+email_elem.send_keys(Keys.ENTER)
 # Login - Password
 sleep(2)
-pwdElem = browser.find_element(By.CSS_SELECTOR, "input[type='password']")
-pwdElem.send_keys(passwordInput)
-pwdElem.submit()
+pwd_elem = browser.find_element(By.CSS_SELECTOR, "input[type='password']")
+pwd_elem.send_keys(password_input)
+pwd_elem.submit()
 # Stay Signed In? No
 sleep(2)
-noBtnElem = browser.find_element(By.CSS_SELECTOR, "input[value='No']")
-noBtnElem.click()
+no_btn_elem = browser.find_element(By.CSS_SELECTOR, "input[value='No']")
+no_btn_elem.click()
 
 # Create New Message
 sleep(2)
-newMsgElem = browser.find_element(
+new_msg_elem = browser.find_element(
     By.CSS_SELECTOR, "[data-icon-name='ComposeRegular']")
-newMsgElem.click()
+new_msg_elem.click()
 # Email Field
 sleep(2)
-toFieldElem = browser.find_element(By.CSS_SELECTOR, "div[aria-label='To']")
-toFieldElem.send_keys(emailToInput, Keys.ENTER)
+to_field_elem = browser.find_element(By.CSS_SELECTOR, "div[aria-label='To']")
+to_field_elem.send_keys(email_to_input, Keys.ENTER)
 # Subject Field
-subjectElem = browser.find_element(
+subject_elem = browser.find_element(
     By.CSS_SELECTOR, "input[aria-label='Add a subject']")
-subjectElem.send_keys(subjectInput)
+subject_elem.send_keys(subject_input)
 # Text Field
 sleep(2)
-msgBodyElem = browser.find_element(
+msg_body_elem = browser.find_element(
     By.CSS_SELECTOR, "div[aria-label='Message body, press Alt+F10 to exit']")
-msgBodyElem.send_keys(msgBodyInput)
+msg_body_elem.send_keys(msg_body_input)
 # Send Email
 sleep(2)
-sendBtnElem = browser.find_element(
+send_btn_elem = browser.find_element(
     By.CSS_SELECTOR, "button[aria-label='Send']")
-sendBtnElem.click()
+send_btn_elem.click()
